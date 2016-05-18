@@ -1,21 +1,29 @@
-var request = require('request');
-
-const apiKey = '55c36e37-12a9-44f0-a0c3-841a0f4d298e';
-const region = 'euw';
+var ChampionService = require('../services/championService.js');
 
 class ChampionController {
 
-  getAllChampions() {
+  constructor(router) {
+    this.router = router;
+    this.registerRoutes();
+  }
 
-    var reqURL = `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion?api_key=${apiKey}`;
+  registerRoutes() {
+    this.router.get('/', this.getChampions.bind(this));
+    //this.router.get('/:id', this.getSinglePlayer.bind(this));
+  }
 
-    request(reqURL, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body) // Show the HTML for the Google homepage.
-      }
-    });
-    
-  };
+  getChampions(req, res) {
+
+    var filter = req.query.filter;
+
+    ChampionService.getChampions(filter)
+      .then(function(result) {
+        res.json(result);
+      })
+      .catch(function() {
+        console.log('error');
+      });
+  }
 
 }
 

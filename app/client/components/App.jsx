@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <div className='appContainer'>
         <h1>LoL Champion App</h1>
-        <ChampionSelectionList championList={['Morgana', 'Ashe', 'Urf']}/>
+        <ChampionSelectionList />
       </div>
     )
   }
