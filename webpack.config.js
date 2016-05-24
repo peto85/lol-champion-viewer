@@ -12,6 +12,7 @@ var SERVER_OUTPUT_DIR = path.resolve(__dirname, 'build');
 
 var NODE_MODULES_DIR = path.resolve(__dirname, 'node_modules');
 
+// To be able to use babel in node environments, this was needed
 var nodeModules = {};
 fs.readdirSync('node_modules')
     .filter(function(x) {
@@ -36,25 +37,40 @@ module.exports = [
     module: {
         loaders: [
             {
+              // Babel loader to transpile ES6/7 JS to commmon JS
               loader: 'babel',
-
               // Ignore everything outside the app directory
               include: [
                 CLIENT_DIR
               ],
-
               exclude: [
                 NODE_MODULES_DIR
               ],
-
               // Parse .js and .jsx files
               test: /\.jsx?$/,
-
               // Options for babel
               query: {
                 plugins: ['transform-runtime'],
                 presets: ['es2015', 'react', 'stage-1']
               }
+            },
+            {
+              // CSS loader to use react-css-modules
+              test: /\.css$/,
+              include: [
+                CLIENT_DIR
+              ],
+              exclude: [
+                NODE_MODULES_DIR
+              ],
+              loaders: [
+                'style?sourceMap',
+                'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+              ]
+            },
+            {
+                test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
+                loader: 'imports?define=>false&this=>window'
             }
         ]
     }
@@ -96,7 +112,7 @@ module.exports = [
               // Options for babel
               query: {
                 plugins: ['transform-runtime'],
-                presets: ['es2015']
+                presets: ['es2015', 'stage-1']
               }
             }
         ]

@@ -1,0 +1,20 @@
+{
+  selectedChampionId: XXX,
+  champions: {
+    412 => {
+      "id": 412,
+      "key": "Thresh",
+      "name": "Thresh",
+      "title": "the Chain Warden",
+      "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Thresh.png"
+    },
+    266 => {
+      "id": 266,
+      "key": "Aatrox",
+      "name": "Aatrox",
+      "title": "the Darkin Blade",
+      "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Aatrox.png"
+    }
+    // ...
+  }
+}
