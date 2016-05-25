@@ -1,17 +1,44 @@
+import { combineReducers } from 'redux'
+import * as Actions from './actions'
+
+
 const initialState = {
   selectedChampionId: null,
-  champions: JSON.parse('[{"id": 412, "key": "Thresh", "name": "Thresh", "title": "the Chain Warden", "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Thresh.png" }, { "id": 266, "key": "Aatrox", "name": "Aatrox", "title": "the Darkin Blade", "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Aatrox.png" }, { "id": 23, "key": "Tryndamere", "name": "Tryndamere", "title": "the Barbarian King", "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Tryndamere.png" }]')
+  championList: {
+    isFetching: false,
+    champions : []
+  }
 }
 
-const appReducer = (state = initialState, action) => {
+function selectedChampionId(state = initialState.selectedChampionId, action) {
   switch (action.type) {
-    case 'SELECT_CHAMPION':
-      return Object.assign({}, state, {
-        selectedChampionId : action.id
-      });
+    case Actions.SELECT_CHAMPION:
+      return action.id;
     default:
       return state;
   }
 }
+
+function championList(state = initialState.championList, action) {
+  switch (action.type) {
+   case Actions.REQUEST_CHAMPION_LIST:
+    return Object.assign({}, state, {
+      isFetching: true,
+      champions: []
+    });
+   case Actions.RECEIVE_CHAMPION_LIST:
+    return Object.assign({}, state, {
+      isFetching: false,
+      champions: action.champions
+    });
+   default:
+     return state;
+  }
+}
+
+const appReducer = combineReducers({
+  selectedChampionId,
+  championList
+});
 
 export default appReducer;

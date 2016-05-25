@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import appReducer from './reducer.js';
+
+import { store } from './store.js';
 
 import ChampionSelector from './ChampionSelector/ChampionSelector.js';
 import ChampionViewer from './ChampionViewer/ChampionViewer.js';
 
-let store = createStore(appReducer);
+import { fetchChampionListIfNeeded } from './actions.js';
 
 class App extends React.Component {
+
+  componentDidMount() {
+    store.dispatch(fetchChampionListIfNeeded());
+  }
 
   render() {
     return (

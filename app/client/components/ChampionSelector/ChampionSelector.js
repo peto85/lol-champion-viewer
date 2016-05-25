@@ -6,7 +6,8 @@ import ChampionSelectionList from '../ChampionSelectionList/ChampionSelectionLis
 
 const mapStateToProps = (state) => {
   return {
-    champions: state.champions
+    isFetching: state.championList.isFetching,
+    champions: state.championList.champions
   }
 }
 

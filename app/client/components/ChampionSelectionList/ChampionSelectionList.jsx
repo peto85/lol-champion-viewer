@@ -7,7 +7,7 @@ import styles from './styles.css';
 
 import ChampionSelectionButton from '../ChampionSelectionButton/ChampionSelectionButton.jsx';
 
-const ChampionSelectionList = ({ champions, onClickHandler }) => {
+const ChampionSelectionList = ({ isFetching, champions, onClickHandler }) => {
 
   if (_.isEmpty(champions)) {
     return (

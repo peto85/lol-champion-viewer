@@ -13,7 +13,7 @@ const getSelectedChampion = (champions, id) => {
 
 const mapStateToProps = (state) => {
   return {
-    championData: getSelectedChampion(state.champions, state.selectedChampionId)
+    championData: getSelectedChampion(state.championList.champions, state.selectedChampionId)
   }
 }
 

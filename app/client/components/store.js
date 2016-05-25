@@ -1,6 +1,15 @@
-import { createStore } from 'redux'
-import appReducer from './reducers'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
 
-let store = createStore(appReducer);
+import appReducer from './reducer.js'
 
-export default store;
+const loggerMiddleware = createLogger();
+
+export let store = createStore(
+  appReducer,
+  applyMiddleware(
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware // neat middleware that logs actions
+  )
+)

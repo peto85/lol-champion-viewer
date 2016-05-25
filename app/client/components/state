@@ -1,14 +1,15 @@
 {
   selectedChampionId: XXX,
-  champions: {
-    412 => {
+  isFetchingChampionList: true
+  champions: [
+    {
       "id": 412,
       "key": "Thresh",
       "name": "Thresh",
       "title": "the Chain Warden",
       "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Thresh.png"
     },
-    266 => {
+    {
       "id": 266,
       "key": "Aatrox",
       "name": "Aatrox",
@@ -16,8 +17,8 @@
       "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Aatrox.png"
     }
     // ...
-  },
-  championDetails : {
+  ],
+  championDetails : [
     412 => {
       isFetching: false,
       championDetails: {
@@ -25,6 +26,7 @@
         bleh: '',
         bloh: ''
       }
-    }
-  }
+    },
+    // ...
+  ]
 }
