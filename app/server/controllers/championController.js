@@ -8,15 +8,12 @@ class ChampionController {
   }
 
   registerRoutes() {
-    this.router.get('/', this.getChampions.bind(this));
-    //this.router.get('/:id', this.getSinglePlayer.bind(this));
+    this.router.get('/', this.getChampionList.bind(this));
+    //this.router.get('/:id', this.getChampionDetails.bind(this));
   }
 
-  getChampions(req, res) {
-
-    var filter = req.query.filter;
-
-    ChampionService.getChampions(filter)
+  getChampionList(req, res) {
+    ChampionService.getChampionList()
       .then(function(result) {
         res.json(result);
       })
@@ -24,6 +21,7 @@ class ChampionController {
         console.log('error');
       });
   }
+
 
 }
 

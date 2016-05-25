@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './styles.css';
 
-class ChampionDetails extends React.Component {
+const ChampionDetails = ({ championData }) => {
 
-  render() {
-    return (
-      <div className='col-xs-6'>
-        <h2 clasName='text-center'>Champion details</h2>
-        <p>something here</p>
-      </div>
+  return (
+    <div className='col-xs-6'>
+      <h2 clasName='text-center'>Champion details</h2>
+
+      <p>{ championData? championData.name: '' }</p>
+
+    </div>
     )
-  }
 }
+
+ChampionDetails.propTypes = {
+  championData: PropTypes.object
+}
+
 
 export default CSSModules(ChampionDetails, styles);

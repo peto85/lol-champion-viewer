@@ -7,7 +7,6 @@ import styles from './styles.css';
 
 import ChampionSelectionButton from '../ChampionSelectionButton/ChampionSelectionButton.jsx';
 
-
 const ChampionSelectionList = ({ champions, onClickHandler }) => {
 
   if (_.isEmpty(champions)) {
@@ -21,7 +20,12 @@ const ChampionSelectionList = ({ champions, onClickHandler }) => {
     let listItems = champions.map(
       (champion, i) => {
         return (
-          <ChampionSelectionButton className='grid-item' key={i} championData={champion} onClickHandler={onClickHandler}/>
+          <ChampionSelectionButton
+            className='grid-item'
+            key={i}
+            championData={champion}
+            onClickCB={ () => onClickHandler(champion.id) }
+          />
         );
       }
     );

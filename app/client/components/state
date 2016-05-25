@@ -16,5 +16,15 @@
       "avatar": "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/Aatrox.png"
     }
     // ...
+  },
+  championDetails : {
+    412 => {
+      isFetching: false,
+      championDetails: {
+        blah: '',
+        bleh: '',
+        bloh: ''
+      }
+    }
   }
 }

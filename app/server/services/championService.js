@@ -10,8 +10,7 @@ const ddragonURI = `http://ddragon.leagueoflegends.com/cdn/${version}/img/champi
 
 class ChampionService {
 
-  getChampions(filter = null) {
-
+  getChampionList() {
     var reqOpts = {
       url : `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion?api_key=${apiKey}`,
       qs: {
@@ -23,26 +22,18 @@ class ChampionService {
 
     // MAGIC
     return rp(reqOpts)
-      .then(this.filterChampionList.bind(this, filter))
+      .then(this.expandChampionList)
       .catch(this.handleError);
 
   }
 
-  filterChampionList(filterQuery, jsonData) {
+  expandChampionList = ( jsonData ) => {
     var championList = _.toArray(jsonData.data);
 
-    if (filterQuery) {
-      var filteredChampionList = _.filter(championList, o => _.includes(o.name.toLowerCase(), filterQuery.toLowerCase()));
-      return this.expandChampionList(filteredChampionList);
-    } else {
-      return this.expandChampionList(championList);
-    }
-  }
-
-  expandChampionList = ( championList ) => {
     _.forEach(championList, function(value) {
       value.avatar = ddragonURI + value.image.full ;
       delete value.image;
+      delete value.title;
     });
 
     return championList;
