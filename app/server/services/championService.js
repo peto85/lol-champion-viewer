@@ -12,7 +12,7 @@ class ChampionService {
 
   getChampionList() {
     var reqOpts = {
-      url : `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion?api_key=${apiKey}`,
+      url : `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion`,
       qs: {
         api_key: apiKey,
         champData: 'image'
@@ -22,8 +22,7 @@ class ChampionService {
 
     // MAGIC
     return rp(reqOpts)
-      .then(this.expandChampionList)
-      .catch(this.handleError);
+      .then(this.expandChampionList);
 
   }
 
@@ -39,8 +38,17 @@ class ChampionService {
     return championList;
   }
 
-  handleError(error) {
-    console.log(error);
+  getChampionDetails(id) {
+    console.log('lala');
+    var reqOpts = {
+      url : `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion/${id}`,
+      qs: {
+        api_key: apiKey
+      },
+      json: true
+    }
+
+    return rp(reqOpts);
   }
 
 }
