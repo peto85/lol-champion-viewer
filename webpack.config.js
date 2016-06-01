@@ -12,6 +12,8 @@ var SERVER_OUTPUT_DIR = path.resolve(__dirname, 'build');
 
 var NODE_MODULES_DIR = path.resolve(__dirname, 'node_modules');
 
+var IMG_DIR = path.resolve(__dirname, 'public/img');
+
 // To be able to use babel in node environments, this was needed
 var nodeModules = {};
 fs.readdirSync('node_modules')
@@ -66,6 +68,17 @@ module.exports = [
               loaders: [
                 'style?sourceMap',
                 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+              ]
+            },
+            {
+              // SVG to React component loader
+              test: /\.svg$/,
+              include: [
+                IMG_DIR
+              ],
+              loaders: [
+                'babel',
+                'react-svg?es5=1'
               ]
             },
             {

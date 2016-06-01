@@ -7,13 +7,18 @@ import styles from './styles.css';
 
 import ChampionSelectionButton from '../ChampionSelectionButton/ChampionSelectionButton.jsx';
 
+import LoadingSpinner from '~/public/img/icon/spinner.svg';
+
 const ChampionSelectionList = ({ isFetching, champions, onClickHandler }) => {
 
   if (_.isEmpty(champions)) {
     return (
       <div className='col-xs-6'>
-        <h2 clasName='text-center'>Champion List</h2>
-        <p>LOADING...</p>
+        <h2 className='text-center'>Champion List</h2>
+        <div styleName='listContainer'>
+          <LoadingSpinner className='center-block' width={40} height={40}/>
+          <p className='text-center'>Loading</p>
+        </div>
       </div>
     )
   } else {
@@ -39,16 +44,18 @@ const ChampionSelectionList = ({ isFetching, champions, onClickHandler }) => {
 
     return (
       <div className='col-xs-6'>
-        <h2 clasName='text-center'>Champion List</h2>
+        <h2 className='text-center'>Champion List</h2>
+        <div styleName='listContainer'>
           <Masonry
                className={'grid'}
-               styleName={'listContainer'}
+               styleName={'gridContainer'}
                elementType={'div'}
                options={masonryOptions}
                disableImagesLoaded={false}
            >
                {listItems}
            </Masonry>
+         </div>
       </div>
     )
   }
