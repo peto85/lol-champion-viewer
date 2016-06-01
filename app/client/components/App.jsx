@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-import { store } from './store.js';
+import { store } from './store.js'
 
-import ChampionSelector from './ChampionSelector/ChampionSelector.js';
-import ChampionViewer from './ChampionViewer/ChampionViewer.js';
+import ChampionSelector from './ChampionSelector/ChampionSelector.js'
+import ChampionViewer from './ChampionViewer/ChampionViewer.js'
 
-import { fetchChampionListIfNeeded } from './actions.js';
+import { fetchChampionListIfNeeded } from './actions.js'
 
 class App extends React.Component {
 
   componentDidMount() {
-    store.dispatch(fetchChampionListIfNeeded());
+    store.dispatch(fetchChampionListIfNeeded())
   }
 
   render() {
@@ -27,6 +27,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'))
 
-module.exports = App;
+module.exports = App

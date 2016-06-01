@@ -1,13 +1,17 @@
-import React, {PropTypes} from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './styles.css';
+import React, {PropTypes} from 'react'
+import CSSModules from 'react-css-modules'
+import styles from './styles.css'
 
-import AttributeBar from '../AttributeBar/AttributeBar.jsx';
-import LoadingSpinner from '~/public/img/icon/spinner.svg';
+import AttributeBar from '../AttributeBar/AttributeBar.jsx'
+import LoadingSpinner from '~/public/img/icon/spinner.svg'
 
+/*
+Renders a pane that will hold components that show more details about the
+champion selected through the ChampionSelector component
+*/
 const ChampionDetails = ({ selectedChampionDetails }) => {
+  let championDetailsDOM
 
-  let championDetailsDOM;
   if (!selectedChampionDetails) {
     championDetailsDOM =
       <p className='text-center text-muted'>Select a champion to view its details</p>
@@ -30,7 +34,7 @@ const ChampionDetails = ({ selectedChampionDetails }) => {
   }
 
   return (
-    <div className='col-xs-6'>
+    <div styleName='fixedSticky' className='col-xs-6 fixed-sticky'>
       <h2 className='text-center'>Champion details</h2>
       <div styleName='detailsContainer'>
         { championDetailsDOM }
@@ -43,4 +47,4 @@ ChampionDetails.propTypes = {
   selectedChampionDetails: PropTypes.object
 }
 
-export default CSSModules(ChampionDetails, styles);
+export default CSSModules(ChampionDetails, styles)

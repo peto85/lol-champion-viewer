@@ -1,7 +1,13 @@
-import React, {PropTypes} from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './styles.css';
+import React, {PropTypes} from 'react'
+import CSSModules from 'react-css-modules'
+import styles from './styles.css'
 
+/*
+Renders a bar that indicates the different levels of some common
+attributes that champions have, such attack, defense, etc
+  - attribute : name of the attribute the bar represents
+  - value : number [0-10] indicating the level of that attribute
+*/
 const AttributeBar = ({ attribute, value }) => {
 
   return (
@@ -24,4 +30,4 @@ AttributeBar.propTypes = {
   value: PropTypes.number.isRequired,
 }
 
-export default CSSModules(AttributeBar, styles);
+export default CSSModules(AttributeBar, styles)

@@ -1,7 +1,10 @@
 var rp = require('request-promise');
 var _ = require('lodash');
 
-const apiKey = '55c36e37-12a9-44f0-a0c3-841a0f4d298e';
+var APIKEY = require('./apikey.js') ;
+
+// Needs an apiKey
+const apiKey = APIKEY.KEY;
 const region = 'euw';
 const version = '6.9.1';
 

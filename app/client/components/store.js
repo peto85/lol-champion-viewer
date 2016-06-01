@@ -9,7 +9,7 @@ const loggerMiddleware = createLogger();
 export let store = createStore(
   appReducer,
   applyMiddleware(
-    thunkMiddleware, // lets us dispatch() functions
-    loggerMiddleware // neat middleware that logs actions
+    thunkMiddleware, // lets us dispatch actions as functions (and automatically injects the dispatch CB and state on them)
+    loggerMiddleware // neat middleware that logs actions and state pre-post reduction
   )
 )
