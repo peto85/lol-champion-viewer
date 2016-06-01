@@ -39,11 +39,11 @@ class ChampionService {
   }
 
   getChampionDetails(id) {
-    console.log('lala');
     var reqOpts = {
       url : `https://global.api.pvp.net/api/lol/static-data/${region}/v1.2/champion/${id}`,
       qs: {
-        api_key: apiKey
+        api_key: apiKey,
+        champData: 'info'
       },
       json: true
     }

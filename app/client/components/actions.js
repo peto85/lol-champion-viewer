@@ -23,6 +23,17 @@ export function receiveChampionList(champions) {
   return { type: RECEIVE_CHAMPION_LIST, champions }
 }
 
+export const REQUEST_CHAMPION_DETAILS = 'REQUEST_CHAMPION_DETAILS';
+export function requestChampionDetails(id) {
+  return { type: REQUEST_CHAMPION_DETAILS, id }
+}
+
+export const RECEIVE_CHAMPION_DETAILS = 'RECEIVE_CHAMPION_DETAILS';
+export function receiveChampionDetails(id, details) {
+  return { type: RECEIVE_CHAMPION_DETAILS, id, details }
+}
+
+
 // API CALLS ACTION CREATORS (ASYNC)
 export function fetchChampionList() {
   return dispatch => {
@@ -45,10 +56,40 @@ export function fetchChampionListIfNeeded() {
   }
 }
 
+export function fetchChampionDetails(id) {
+  return dispatch => {
+    dispatch(requestChampionDetails(id));
+    return Promise.resolve($.getJSON(`http://localhost:3000/api/champion/${id}`))
+      .then(details => dispatch(receiveChampionDetails(id, details)))
+      .catch(() => console.log('error on request to server'));
+  }
+}
+
+export function fetchChampionDetailsIfNeeded(id) {
+  return (dispatch, getState) => {
+    if (shouldFetchChampionDetails(getState(), id)) {
+      return dispatch(fetchChampionDetails(id))
+    } else {
+      return Promise.resolve()
+    }
+  }
+}
+
+
 // HELPER FUNCTIONS
 function shouldFetchChampionList(state) {
   // Only fetch champions if state does not contain any and they are not being fetched already
   if (!state.championList.isFetching && _.isEmpty(state.championList.champions)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function shouldFetchChampionDetails(state, id) {
+  // Only fetch champion details if state does not contain details for that specific champion
+  // and they are not being fetched
+  if (!_.has(state.championDetails,id) || (!state.championDetails[id].isFetching && _.isEmpty(state.championDetails[id].details))) {
     return true;
   } else {
     return false;

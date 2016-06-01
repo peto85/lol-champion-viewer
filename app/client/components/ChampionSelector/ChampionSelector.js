@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { connect } from 'react-redux'
-import { selectChampion } from '../actions.js'
+import { selectChampion, fetchChampionDetailsIfNeeded } from '../actions.js'
 
 import ChampionSelectionList from '../ChampionSelectionList/ChampionSelectionList.jsx'
 
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onClickHandler: (id) => {
       dispatch(selectChampion(id))
+      dispatch(fetchChampionDetailsIfNeeded(id))
     }
   }
 }

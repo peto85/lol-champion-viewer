@@ -21,7 +21,7 @@
   championDetails : [
     412 => {
       isFetching: false,
-      championDetails: {
+      details: {
         blah: '',
         bleh: '',
         bloh: ''
